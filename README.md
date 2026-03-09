@@ -35,8 +35,6 @@ Para habilitar el despliegue automatizado de la aplicación en AWS utilizando Te
 ## Requisitos Previos
 
 - Cuenta de AWS con permisos adecuados.
-- AWS CLI configurado.
-- Terraform instalado (versión 1.5.0 o superior).
-- Repositorio en GitHub con acceso a Actions.
-
-Para más detalles sobre el despliegue, consulta el `README.md` en la carpeta `infra/`.
+- Bucket de S3 para el backend de terraform
+- DynamoDB table para guardar ahi los tfstate locks
+- OIDC identity en IAM para el role que pueda ejecutar github actions
