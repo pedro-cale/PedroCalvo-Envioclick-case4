@@ -35,12 +35,24 @@ jobs:
 
       - name: Terraform Init
         working-directory: infra
-        run: terraform init
+        run: |
+          terraform init \
+            -backend-config="key=${{ vars.COMPONENT }}/${{ vars.ENV }}/terraform.tfstate"
+      
 
       - name: Terraform Plan
         working-directory: infra
         run: terraform plan
+      - name: Terraform Plan
+        id: plan
+        working-directory: infra
+        env:
+          TF_VAR_environment: ${{ vars.ENV }}
+          TF_VAR_aws_account: ${{ vars.AWS_ACCOUNT }}
+        run: |
+          terraform plan -out=tfplan
 
       - name: Terraform Apply
         working-directory: infra
-        run: terraform apply -auto-approve
+        run: | 
+          terraform apply -auto-approve tfplan

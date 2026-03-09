@@ -9,3 +9,11 @@ variable "function_name" {
   type        = string
   default     = "case4-lambda"
 }
+
+variable "aws_account" {
+    type = string
+}
+
+variable "environment" {
+    type = string
+}
