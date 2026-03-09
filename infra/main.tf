@@ -32,7 +32,7 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
 
 resource "aws_lambda_function" "interview_lambda" {
   function_name = var.function_name
-  runtime       = "python3.9"
+  runtime       = "python3.13"
   handler       = "main.handler"
   role          = aws_iam_role.lambda_role.arn
   filename      = data.archive_file.lambda_zip.output_path
